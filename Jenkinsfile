@@ -14,12 +14,19 @@ pipeline
         stage('Unit tests'){
             steps{
              echo 'Unit tests'
+             //sh 'npm test'
             }
         }
 
         stage('Code Analysis'){
             steps{
-             echo 'Code Analysis'
+             sonar-scanner -Dsonar.host.url=http://172.31.20.113:9000 -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.projectKey=user
+            }
+        }
+
+        stage('Security Scans'){
+            steps{
+             echo 'Security Scans'
             }
         }
 
